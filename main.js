@@ -6,6 +6,7 @@ let submit_button=document.querySelector(".submit-button");
 let spans_container=document.querySelector(".spans");
 let result_container=document.querySelector(".result");
 
+let I=0;
 let index=0;
 let rightAnswers=0;
 let chosen_answers_array=[];
@@ -19,7 +20,7 @@ function getQuestions() {
         // console.log(this.responseText);
         let quiz_array = JSON.parse(this.responseText);
         console.log(quiz_array);
-        let questions_array=quiz_array.sort((a, b) => 0.5 - Math.random());
+        let questions_array=quiz_array;//.sort((a, b) => 0.5 - Math.random())
         let array_length=questions_array.length;
         // console.log(array_length);
         questions_count.innerHTML=array_length;//show the questions count in the html file
@@ -27,14 +28,14 @@ function getQuestions() {
         for (let i = 0; i < array_length/4; i++) {
             let span = document.createElement("span");
             span.innerHTML=i+1;
-            if(i+1==1){
+            if(i==0){
                 span.className="on";
             }
             spans_container.appendChild(span);
          }
         
 
-         addQuestionData(questions_array[index]);
+         addQuestionData(questions_array);
         
          //onclick method
          submit_button.onclick = () => {
@@ -48,7 +49,7 @@ function getQuestions() {
                 question_area.innerHTML="";
                 answers_area.innerHTML="";
                 //fill the question area and the answers area
-                addQuestionData(questions_array[index],00);
+                addQuestionData(questions_array);
 
                 //paint the span
                 paintSpan();
@@ -66,19 +67,19 @@ function getQuestions() {
 }
  getQuestions();
 
-function addQuestionData(obj) {
+function addQuestionData(array) {
     // the question
 
     let question = document.createElement("h2");
     // Create Question Text
-    let question_text = document.createTextNode(obj.question);
+    let question_text = document.createTextNode(array[I].question);
     question.appendChild(question_text);
     // Append The H2 To The question area
     question_area.appendChild(question);
 
     // the answers
 
-    for (let i=1; i <= 4; i++) {
+    for (let i=I; i <4+I; i++) {
 
         // Create parent div
         let parent_div = document.createElement("div");
@@ -89,9 +90,9 @@ function addQuestionData(obj) {
         let radio_input = document.createElement("input");
         radio_input.name = 'answer_radio';
         radio_input.type = 'radio';
-        radio_input.id = `answer_${i}`;
-        radio_input.dataset.answer=obj[`answer_${i}`];
-        if(i==1){
+        radio_input.id = `answer_${i+1}`;
+        radio_input.dataset.answer=array[i][`answer`];
+        if(i==0){
             radio_input.checked=true;
         }
 
@@ -99,7 +100,7 @@ function addQuestionData(obj) {
         let label=document.createElement("label");
         label.htmlFor = `answer_${i}`;// add the attribute for
         // Create Label Text
-        let label_text = document.createTextNode(obj[`answer_${i}`]);
+        let label_text = document.createTextNode(array[i][`answer`]);
         label.appendChild(label_text);
 
         // append Input + Label To the parent div
@@ -109,6 +110,8 @@ function addQuestionData(obj) {
         // Append the parent div to the answers area
         answers_area.appendChild(parent_div);
     }
+    
+    I=I+4;
 }
 
 function checkAnswer (right_answer) {
