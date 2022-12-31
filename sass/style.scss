@@ -1,0 +1,130 @@
+@import "__colors-variables";
+
+@mixin padding-and-bg_color($padding:20px,$bg_color:$light-color){
+    background-color:$bg_color;
+    padding: $padding;
+}
+
+*{
+    box-sizing: border-box;
+    font-size: 18px;
+}
+body {
+    font-family: Tahoma, Arial;
+    color: $primary-color;
+}
+.quiz-app {
+    margin: 20px auto;
+    width: 900px;
+    background-color: $quiz-app-bg;
+    padding: 15px;
+
+    .quiz-info {
+        display: flex;
+        justify-content: space-between;
+        @include padding-and-bg_color();
+    }
+
+    .quiz-info .category span ,.quiz-info .questions-count span{
+        font-weight: bold;
+    }
+
+    .question-area {
+        margin-top: 15px;
+        @include padding-and-bg_color();
+        h2 {
+            margin: 0;
+            min-height: 44px;
+        }
+    }
+   
+    .answers-area {
+        @include padding-and-bg_color(0 20px 20px);
+        .answer {
+            position: relative;
+            @include padding-and-bg_color(15px,$answer-bg);
+            input {
+                cursor: pointer;
+                accent-color: $on-color;
+            }
+            input[type="Radio"]:checked + label {
+                color: $on-color;
+            }
+            label {
+                cursor: pointer;
+                font-weight: bold;
+                color: $light-purple;
+                font-size: 13px;
+                margin-left: 5px;
+                position: absolute;
+                top: 16px;
+            }
+        }
+        .answer:not(:last-child) {
+            border-bottom: 1px solid $border-color;
+        }
+    }
+
+    .submit-button {
+        display: block;
+        margin:14px 0px 0px 20px;
+        border-radius: 10px;
+        border: none;
+        color: $light-color;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+        @include padding-and-bg_color(10px 15px,$on-color);
+    }
+    .spans{
+        margin: 14PX 0PX 14PX 22PX;
+        color:$light-purple;
+        span{
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+    } 
+    .result{
+        padding: 15px 0px 15px 0px;
+    } 
+}
+
+.on{
+    color:$on-color;
+}
+.dark-green{
+    color:$dark-green;
+}
+.good{
+    color: $good-color;
+}
+.not-good{
+    color: $not-good-color;
+}
+.bold{
+    font-weight: bold;
+}
+
+@media screen and (max-width:930px){
+    *{
+        box-sizing: border-box;
+        font-size: 15px;
+    }
+    body{
+        margin:0px;
+    }
+    .quiz-app{
+        width:100%; 
+        margin: 0px;
+        .answers-area .answer{
+            height: 60px;
+            label{
+                font-size: 11px;
+            }
+        }
+        .quiz-app .submit-button{
+            font-size: 11px;
+        }
+    }
+}

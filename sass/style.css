@@ -1,0 +1,129 @@
+* {
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+body {
+  font-family: Tahoma, Arial;
+  color: #414578;
+}
+
+.quiz-app {
+  margin: 20px auto;
+  width: 900px;
+  background-color: #e7dff8;
+  padding: 15px;
+}
+.quiz-app .quiz-info {
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 20px;
+}
+.quiz-app .quiz-info .category span, .quiz-app .quiz-info .questions-count span {
+  font-weight: bold;
+}
+.quiz-app .question-area {
+  margin-top: 15px;
+  background-color: #fff;
+  padding: 20px;
+}
+.quiz-app .question-area h2 {
+  margin: 0;
+  min-height: 44px;
+}
+.quiz-app .answers-area {
+  background-color: #fff;
+  padding: 0 20px 20px;
+}
+.quiz-app .answers-area .answer {
+  position: relative;
+  background-color: #d7f2f7;
+  padding: 15px;
+}
+.quiz-app .answers-area .answer input {
+  cursor: pointer;
+  accent-color: #8751fc;
+}
+.quiz-app .answers-area .answer input[type=Radio]:checked + label {
+  color: #8751fc;
+}
+.quiz-app .answers-area .answer label {
+  cursor: pointer;
+  font-weight: bold;
+  color: #7076b2;
+  font-size: 13px;
+  margin-left: 5px;
+  position: absolute;
+  top: 16px;
+}
+.quiz-app .answers-area .answer:not(:last-child) {
+  border-bottom: 1px solid #dfdfdf;
+}
+.quiz-app .submit-button {
+  display: block;
+  margin: 14px 0px 0px 20px;
+  border-radius: 10px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  background-color: #8751fc;
+  padding: 10px 15px;
+}
+.quiz-app .spans {
+  margin: 14PX 0PX 14PX 22PX;
+  color: #7076b2;
+}
+.quiz-app .spans span {
+  font-weight: bold;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.quiz-app .result {
+  padding: 15px 0px 15px 0px;
+}
+
+.on {
+  color: #8751fc;
+}
+
+.dark-green {
+  color: #2fa903;
+}
+
+.good {
+  color: darkorange;
+}
+
+.not-good {
+  color: rgb(241, 62, 62);
+}
+
+.bold {
+  font-weight: bold;
+}
+
+@media screen and (max-width: 930px) {
+  * {
+    box-sizing: border-box;
+    font-size: 15px;
+  }
+  body {
+    margin: 0px;
+  }
+  .quiz-app {
+    width: 100%;
+    margin: 0px;
+  }
+  .quiz-app .answers-area .answer {
+    height: 60px;
+  }
+  .quiz-app .answers-area .answer label {
+    font-size: 11px;
+  }
+  .quiz-app .quiz-app .submit-button {
+    font-size: 11px;
+  }
+}/*# sourceMappingURL=style.css.map */

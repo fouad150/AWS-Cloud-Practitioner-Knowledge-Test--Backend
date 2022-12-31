@@ -1,0 +1,44 @@
+{
+    "quiz_array":[
+        {
+            "question":" Why is AWS more economical than traditional data centers for applications with varying compute workloads?",
+            "answer_1":"Amazon EC2 costs are billed on a monthly basis.",
+            "answer_2":"Users retain full administrative access to their Amazon EC2 instances.",
+            "answer_3":" Amazon EC2 instances can be launched on demand when needed.",
+            "answer_4":"Users can permanently run enough instances to handle peak workloads.",
+            "right_answer":" Amazon EC2 instances can be launched on demand when needed."  
+        },
+        {
+            "question":"Which AWS service would simplify the migration of a database to AWS?",
+            "answer_1":"AWS Storage Gateway",
+            "answer_2":"AWS Database Migration Service (AWS DMS)",
+            "answer_3":"Amazon EC2",
+            "answer_4":"Amazon AppStream 2.0",
+            "right_answer":"AWS Database Migration Service (AWS DMS)"
+        },
+        {
+            "question":"Which AWS offering enables users to find, buy, and immediately start using software solutions in their AWS environment?",
+            "answer_1":"AWS Config",
+            "answer_2":"AWS OpsWorks",
+            "answer_3":"AWS SDK",
+            "answer_4":"AWS Marketplace",
+            "right_answer":"AWS SDK"
+        },
+        {
+            "question":"Which AWS networking service enables a company to create a virtual network within AWS?",
+            "answer_1":"AWS Config",
+            "answer_2":"Amazon Route 53",
+            "answer_3":"AWS Direct Connect",
+            "answer_4":"Amazon Virtual Private Cloud (Amazon VPC)",
+            "right_answer":"AWS Direct Connect"
+        },
+        {
+            "question":" Why is AWS more economical than traditional data centers for applications with varying compute workloads?",
+            "answer_1":"Amazon EC2 costs are billed on a monthly basis.",
+            "answer_2":"Users retain full administrative access to their Amazon EC2 instances.",
+            "answer_3":" Amazon EC2 instances can be launched on demand when needed.",
+            "answer_4":"Users can permanently run enough instances to handle peak workloads.",
+            "right_answer":" Amazon EC2 instances can be launched on demand when needed."  
+        }
+    ]
+}
