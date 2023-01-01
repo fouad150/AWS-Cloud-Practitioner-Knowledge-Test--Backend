@@ -6,7 +6,7 @@ class DatabaseConnection
     private $pw = "";
     private $databaseName = "quiz";
 
-    private function connection()
+    public function getConnection()
     {
         try {
             $pdo = new PDO("mysql:host=$this->host;dbname=$this->databaseName", $this->username, $this->pw, array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'));
@@ -15,10 +15,6 @@ class DatabaseConnection
             return "Connection failed.";
         }
         return $pdo;
-    }
-    public function getConnection()
-    {
-        return $this->connection();
     }
 }
 

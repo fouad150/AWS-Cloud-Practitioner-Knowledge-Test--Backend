@@ -146,27 +146,36 @@ function showResult(array_length){
     spans_container.remove();
     $.get("databaseConnection.php",{right_answers_array:true},function(data){
             let right_answers_array=JSON.parse(data);
+            let wrong_answers=[];
+            let correct_answers=[];
             for (let i = 0; i < array_length/4; i++) {
-                if(chosen_answers_array[i]=right_answers_array[i].answer){
+                if(chosen_answers_array[i]==right_answers_array[i].answer){
                     rightAnswers++;
-                    console.log(5555);
+                    console.log(rightAnswers);
+                }else{
+                    wrong_answers.push(chosen_answers_array[i]);
+                    correct_answers.push(right_answers_array[i].answer);
                 }
             }
+
+
+            if(rightAnswers>(array_length/4)*(70/100)){
+                result_container.innerHTML=`<span class='on bold'>Perfect</span> you answered ${rightAnswers} from ${array_length/4}.`;
+            }else if(rightAnswers<=(array_length/4)*(7/10)&&rightAnswers>=(array_length/4)*(1/2)){
+                result_container.innerHTML=`<span class='good bold'>Good</span> you answered ${rightAnswers} from ${array_length/4}.`;
+            }else{
+                result_container.innerHTML=`<span class='not-good bold'>Not Good</span> you answered ${rightAnswers} from ${array_length/4}.`;
+            }
+            if(wrong_answers.length>0){
+                quiz_app.innerHTML+="<span class=bold>The Correction:</span><br>";
+                for (let i = 0; i < wrong_answers.length; i++) {
+                    quiz_app.innerHTML+=`<span class=not-good>the chosen answer is:</span> ${wrong_answers[i]} <br> <span class=dark-green>the right answer is:</span> ${correct_answers[i]}<br><br>`;   
+                }
+            }
+
+            
           }
         )
-    // if(rightAnswers>array_length*(70/100)){
-    //     result_container.innerHTML=`<span class='on bold'>Perfect</span> you answered ${rightAnswers} from ${array_length}.`;
-    // }else if(rightAnswers<=array_length*(7/10)&&rightAnswers>=array_length*(1/2)){
-    //     result_container.innerHTML=`<span class='good bold'>Good</span> you answered ${rightAnswers} from ${array_length}.`;
-    // }else{
-    //     result_container.innerHTML=`<span class='not-good bold'>Not Good</span> you answered just ${rightAnswers} from ${array_length}.`;
-    // }
-    // if(chosen_answers_array.length>0){
-    //     quiz_app.innerHTML+="<span class=bold>The Correction:</span><br>";
-    //     for (let i = 0; i < chosen_answers_array.length; i++) {
-    //         quiz_app.innerHTML+=`<span class=not-good>the chosen answer is:</span> ${chosen_answers_array[i]} <br> <span class=dark-green>the right answer is:</span> ${right_answers_array[i]}<br><br>`;   
-    //     }
-    // }
 }
 
 
