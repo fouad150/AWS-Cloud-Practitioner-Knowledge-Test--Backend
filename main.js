@@ -10,7 +10,6 @@ let I=0;
 let index=0;
 let rightAnswers=0;
 let chosen_answers_array=[];
-let right_answers_array=[];
 
 
 function getQuestions() {
@@ -39,12 +38,11 @@ function getQuestions() {
         
          //onclick method
          submit_button.onclick = () => {
-            let right_answer=questions_array[index].right_answer;
-            checkAnswer(right_answer);
+            getChosenAnswer();
         
             index++;
 
-            if(index<array_length){
+            if(index<array_length/4){
                 //empty the previous question area and the answers area
                 question_area.innerHTML="";
                 answers_area.innerHTML="";
@@ -54,7 +52,7 @@ function getQuestions() {
                 //paint the span
                 paintSpan();
 
-            }else if(index==array_length){
+            }else if(index==array_length/4){
                 showResult(array_length);
             }
             
@@ -66,6 +64,9 @@ function getQuestions() {
     myRequest.send();
 }
  getQuestions();
+
+//  $.get("databaseConnection.php",{data_array:true},function(data){console.log(JSON.parse(data))})
+//  $.get("databaseConnection.php",{right_answers_array:true},function(data){console.log(JSON.parse(data))})
 
 function addQuestionData(array) {
     // the question
@@ -92,13 +93,13 @@ function addQuestionData(array) {
         radio_input.type = 'radio';
         radio_input.id = `answer_${i+1}`;
         radio_input.dataset.answer=array[i][`answer`];
-        if(i==0){
+        if(i==I){
             radio_input.checked=true;
         }
 
         //ceate the label
         let label=document.createElement("label");
-        label.htmlFor = `answer_${i}`;// add the attribute for
+        label.htmlFor = `answer_${i+1}`;// add the attribute for
         // Create Label Text
         let label_text = document.createTextNode(array[i][`answer`]);
         label.appendChild(label_text);
@@ -114,21 +115,23 @@ function addQuestionData(array) {
     I=I+4;
 }
 
-function checkAnswer (right_answer) {
+function getChosenAnswer () {
     let answers = document.getElementsByName("answer_radio");
     let chosen_answer;
-    for (let i = 0; i < answers.length; i++) {
+    for (let i = 0; i < 4; i++) {
     if (answers[i].checked) {
     chosen_answer = answers[i].dataset.answer;
+    chosen_answers_array.push(chosen_answer);
+    console.log(chosen_answers_array);
     }
     }
-    if (right_answer === chosen_answer) {
-    rightAnswers++;
-    console.log("Good Answer");
-    }else{
-        chosen_answers_array.push(chosen_answer);
-        right_answers_array.push(right_answer);
-    }
+    // if (right_answer === chosen_answer) {
+    // rightAnswers++;
+    // console.log("Good Answer");
+    // }else{
+    //     chosen_answers_array.push(chosen_answer);
+    //     right_answers_array.push(right_answer);
+    // }
 }
 
 function paintSpan(){
@@ -141,21 +144,29 @@ function showResult(array_length){
     answers_area.remove();
     submit_button.remove();
     spans_container.remove();
-    console.log(array_length);   
-    console.log(index);
-    if(rightAnswers>array_length*(70/100)){
-        result_container.innerHTML=`<span class='on bold'>Perfect</span> you answered ${rightAnswers} from ${array_length}.`;
-    }else if(rightAnswers<=array_length*(7/10)&&rightAnswers>=array_length*(1/2)){
-        result_container.innerHTML=`<span class='good bold'>Good</span> you answered ${rightAnswers} from ${array_length}.`;
-    }else{
-        result_container.innerHTML=`<span class='not-good bold'>Not Good</span> you answered just ${rightAnswers} from ${array_length}.`;
-    }
-    if(chosen_answers_array.length>0){
-        quiz_app.innerHTML+="<span class=bold>The Correction:</span><br>";
-        for (let i = 0; i < chosen_answers_array.length; i++) {
-            quiz_app.innerHTML+=`<span class=not-good>the chosen answer is:</span> ${chosen_answers_array[i]} <br> <span class=dark-green>the right answer is:</span> ${right_answers_array[i]}<br><br>`;   
-        }
-    }
+    $.get("databaseConnection.php",{right_answers_array:true},function(data){
+            let right_answers_array=JSON.parse(data);
+            for (let i = 0; i < array_length/4; i++) {
+                if(chosen_answers_array[i]=right_answers_array[i].answer){
+                    rightAnswers++;
+                    console.log(5555);
+                }
+            }
+          }
+        )
+    // if(rightAnswers>array_length*(70/100)){
+    //     result_container.innerHTML=`<span class='on bold'>Perfect</span> you answered ${rightAnswers} from ${array_length}.`;
+    // }else if(rightAnswers<=array_length*(7/10)&&rightAnswers>=array_length*(1/2)){
+    //     result_container.innerHTML=`<span class='good bold'>Good</span> you answered ${rightAnswers} from ${array_length}.`;
+    // }else{
+    //     result_container.innerHTML=`<span class='not-good bold'>Not Good</span> you answered just ${rightAnswers} from ${array_length}.`;
+    // }
+    // if(chosen_answers_array.length>0){
+    //     quiz_app.innerHTML+="<span class=bold>The Correction:</span><br>";
+    //     for (let i = 0; i < chosen_answers_array.length; i++) {
+    //         quiz_app.innerHTML+=`<span class=not-good>the chosen answer is:</span> ${chosen_answers_array[i]} <br> <span class=dark-green>the right answer is:</span> ${right_answers_array[i]}<br><br>`;   
+    //     }
+    // }
 }
 
 
