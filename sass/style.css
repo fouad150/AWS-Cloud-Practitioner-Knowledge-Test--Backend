@@ -43,10 +43,10 @@ body {
 }
 .quiz-app .answers-area .answer input {
   cursor: pointer;
-  accent-color: #8751fc;
+  accent-color: #7c40fe;
 }
 .quiz-app .answers-area .answer input[type=Radio]:checked + label {
-  color: #8751fc;
+  color: #7c40fe;
 }
 .quiz-app .answers-area .answer label {
   cursor: pointer;
@@ -69,7 +69,7 @@ body {
   font-weight: bold;
   font-size: 15px;
   cursor: pointer;
-  background-color: #8751fc;
+  background-color: #7c40fe;
   padding: 10px 15px;
 }
 .quiz-app .spans {
@@ -86,7 +86,7 @@ body {
 }
 
 .on {
-  color: #8751fc;
+  color: #7c40fe;
 }
 
 .dark-green {

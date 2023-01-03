@@ -16,13 +16,10 @@ function getQuestions() {
     let myRequest = new XMLHttpRequest();
     myRequest.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
-        // console.log(this.responseText);
         let quiz_array = JSON.parse(this.responseText);
-        console.log(quiz_array);
         let questions_array=quiz_array;//.sort((a, b) => 0.5 - Math.random())
         let array_length=questions_array.length;
-        // console.log(array_length);
-        questions_count.innerHTML=array_length;//show the questions count in the html file
+        questions_count.innerHTML=array_length/4;//show the questions count in the html file
 
         for (let i = 0; i < array_length/4; i++) {
             let span = document.createElement("span");
@@ -60,13 +57,13 @@ function getQuestions() {
 
     }
 }
-    myRequest.open("GET","databaseConnection.php", true);
+    myRequest.open("GET","classes/quiz.php", true);
     myRequest.send();
 }
  getQuestions();
 
-//  $.get("databaseConnection.php",{data_array:true},function(data){console.log(JSON.parse(data))})
-//  $.get("databaseConnection.php",{right_answers_array:true},function(data){console.log(JSON.parse(data))})
+//  $.get("classes/quiz.php",{data_array:true},function(data){console.log(JSON.parse(data))})
+//  $.get("classes/quiz.php",{right_answers_array:true},function(data){console.log(JSON.parse(data))})
 
 function addQuestionData(array) {
     // the question
@@ -125,13 +122,6 @@ function getChosenAnswer () {
     console.log(chosen_answers_array);
     }
     }
-    // if (right_answer === chosen_answer) {
-    // rightAnswers++;
-    // console.log("Good Answer");
-    // }else{
-    //     chosen_answers_array.push(chosen_answer);
-    //     right_answers_array.push(right_answer);
-    // }
 }
 
 function paintSpan(){
@@ -144,7 +134,7 @@ function showResult(array_length){
     answers_area.remove();
     submit_button.remove();
     spans_container.remove();
-    $.get("databaseConnection.php",{right_answers_array:true},function(data){
+    $.get("classes/quiz.php",{right_answers_array:true},function(data){
             let right_answers_array=JSON.parse(data);
             let wrong_answers=[];
             let correct_answers=[];
@@ -172,7 +162,6 @@ function showResult(array_length){
                     quiz_app.innerHTML+=`<span class=not-good>the chosen answer is:</span> ${wrong_answers[i]} <br> <span class=dark-green>the right answer is:</span> ${correct_answers[i]}<br><br>`;   
                 }
             }
-
             
           }
         )
