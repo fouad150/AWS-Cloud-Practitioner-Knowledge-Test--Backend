@@ -16,8 +16,7 @@ function getQuestions() {
     let myRequest = new XMLHttpRequest();
     myRequest.onreadystatechange = function () {
     if (this.readyState === 4 && this.status === 200) {
-        let quiz_array = JSON.parse(this.responseText);
-        let questions_array=quiz_array;//.sort((a, b) => 0.5 - Math.random())
+        let questions_array=JSON.parse(this.responseText);//.sort((a, b) => 0.5 - Math.random())
         let array_length=questions_array.length;
         questions_count.innerHTML=array_length/4;//show the questions count in the html file
 
@@ -61,9 +60,6 @@ function getQuestions() {
     myRequest.send();
 }
  getQuestions();
-
-//  $.get("classes/quiz.php",{data_array:true},function(data){console.log(JSON.parse(data))})
-//  $.get("classes/quiz.php",{right_answers_array:true},function(data){console.log(JSON.parse(data))})
 
 function addQuestionData(array) {
     // the question

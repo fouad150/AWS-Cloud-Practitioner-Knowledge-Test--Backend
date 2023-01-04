@@ -12,6 +12,7 @@
 body {
     font-family: Tahoma, Arial;
     color: $primary-color;
+    background-image: url("image.jpg");
 }
 .quiz-app {
     margin: 20px auto;
@@ -23,10 +24,9 @@ body {
         display: flex;
         justify-content: space-between;
         @include padding-and-bg_color();
-    }
-
-    .quiz-info .category span ,.quiz-info .questions-count span{
-        font-weight: bold;
+        .category span ,.questions-count span{
+            font-weight: bold;
+        }
     }
 
     .question-area {

@@ -15,28 +15,6 @@ function getData()
     $stmt = $connection_object->getConnection()->query($sql);
     $data = $stmt->fetchAll();
     echo json_encode($data);
-    // $answers_array = [];
-    // for ($index = 1; $index <= 5; $index++) {
-    //     $array = [];
-    //     for ($i = 0; $i < count($data); $i++) {
-    //         if ($data[$i]["question_id"] == $index) {
-    //             $array[] = $data[$i]["answer"];
-    //         }
-    //     }
-    //     $answers_array[] = $array;
-    // }
-
-    // echo '<pre>';
-    // var_dump($answers_array);
-    // echo '<pre>';
-
-    // global $connection_object;
-    // $sql = "SELECT Q.question FROM questions Q";
-    // $stmt = $connection_object->getConnection()->query($sql);
-    // $questions_data = $stmt->fetchAll();
-    // for ($i = 0; $i < count($questions_data); $i++) {
-    //     $answers_array[$i]
-    // }
 }
 
 function getRightAnswers()
@@ -47,7 +25,3 @@ function getRightAnswers()
     $data = $stmt->fetchAll();
     echo json_encode($data);
 }
-
-// echo '<pre>';
-// var_dump($data);
-// echo '<pre>';
